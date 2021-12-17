@@ -18,7 +18,7 @@ public class Malvado extends Vehiculos{
 
    
 
-    public Malvado(double velocidad, double pderrape, String nombre, int ataque, int vida) {
+    public Malvado(double velocidad, double pderrape, String nombre, double ataque, int vida) {
   
         super(velocidad, pderrape, nombre, ataque, vida);
         

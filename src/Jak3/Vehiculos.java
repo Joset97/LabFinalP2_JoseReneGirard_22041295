@@ -14,10 +14,10 @@ public class Vehiculos {
     protected double velocidad;
     protected double pderrape;
     protected String nombre;
-    protected int ataque;
+    protected double ataque;
     protected int vida;
 
-    public Vehiculos(double velocidad, double pderrape, String nombre, int ataque, int vida) {
+    public Vehiculos(double velocidad, double pderrape, String nombre, double ataque, int vida) {
         this.velocidad = velocidad;
         this.pderrape = pderrape;
         this.nombre = nombre;
@@ -49,11 +49,11 @@ public class Vehiculos {
         this.nombre = nombre;
     }
 
-    public int getAtaque() {
+    public double getAtaque() {
         return ataque;
     }
 
-    public void setAtaque(int ataque) {
+    public void setAtaque(double ataque) {
         this.ataque = ataque;
     }
 
