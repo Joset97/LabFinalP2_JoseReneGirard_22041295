@@ -19,16 +19,18 @@ public class Belicos extends Vehiculos{
     public Belicos(double velocidad, double pderrape, String nombre, int ataque, int vida) {
         super(velocidad, pderrape, nombre, ataque, vida);
     
-    
+    vidas= setVidas();
     }
 
     public int getVidas() {
         return vidas;
     }
 
-    public void setVidas() {
+    public int setVidas() {
          Random r = new Random();
-        this.vidas = vidas;
+         int valorDado =super.vida/2 + r.nextInt(super.vida+1);
+         
+       return valorDado;
     }
     
     
