@@ -26,7 +26,7 @@ public class Gui extends javax.swing.JFrame implements Runnable {
     int count = 0;
     boolean pausa = false;
     boolean vivo = true;
-    boolean fasefinal= false;
+    boolean fasefinal = false;
 
     @Override
     public void run() {
@@ -37,17 +37,17 @@ public class Gui extends javax.swing.JFrame implements Runnable {
                 try {
 
                     pb_vidaErrol.setValue(pb_vidaErrol.getValue() - ((int) players.get(0).getAtque()));
-                    if(pb_vidaErrol.getValue()<=0){
-                    vivo=false;
-                    break;
+                    if (pb_vidaErrol.getValue() <= 0) {
+                        vivo = false;
+                        break;
                     }
-                    if(count==2){
-                    pb_vidaJak.setValue((int) (pb_vidaJak.getValue()-players.get(1).getAtque()));
-                    count=0;
-                    if(pb_vidaErrol.getValue()<=0){
-                    vivo=false;
-                    break;
-                    }
+                    if (count == 2) {
+                        pb_vidaJak.setValue((int) (pb_vidaJak.getValue() - players.get(1).getAtque()));
+                        count = 0;
+                        if (pb_vidaErrol.getValue() <= 0) {
+                            vivo = false;
+                            break;
+                        }
                     }
                     Thread.sleep(500);
                     count++;
@@ -130,8 +130,18 @@ public class Gui extends javax.swing.JFrame implements Runnable {
         jLabel3.setText("Ciber Errol");
 
         jButton1.setText("Iniciar Partida");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Pausar Partida");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Ataque Jak:");
 
@@ -386,6 +396,24 @@ public class Gui extends javax.swing.JFrame implements Runnable {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        hilo = new Thread(this);
+        pb_vidaErrol.setMaximum(((int) players.get(1).getVida()));
+        pb_vidaJak.setMaximum(((int) players.get(0).getVida()));
+        pb_vidaErrol.setValue(((int) players.get(1).getVida()));
+        pb_vidaJak.setValue(((int) players.get(0).getVida()));
+        hilo.start();
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        pausa = !pausa;
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -466,24 +494,24 @@ public class Gui extends javax.swing.JFrame implements Runnable {
     ArrayList<Jugadores> players = new ArrayList();
     ArrayList<Vehiculos> cars = new ArrayList();
 
-    public void arbol(){
-    
-    if (!AP.getCar().isEmpty()) {
-                  DefaultTreeModel modeloARBOL
+    public void arbol() {
+
+        if (!AP.getCar().isEmpty()) {
+            DefaultTreeModel modeloARBOL
                     = (DefaultTreeModel) Arbol.getModel();
             DefaultMutableTreeNode raiz
                     = (DefaultMutableTreeNode) modeloARBOL.getRoot();
-     DefaultComboBoxModel Carros = (DefaultComboBoxModel) jComboBox2.getModel();
-            
+            DefaultComboBoxModel Carros = (DefaultComboBoxModel) jComboBox2.getModel();
+
             for (Vehiculos c : AP.getCar()) {
-              DefaultMutableTreeNode  carro = new DefaultMutableTreeNode(c);
-             raiz.add(carro);
+                DefaultMutableTreeNode carro = new DefaultMutableTreeNode(c);
+                raiz.add(carro);
                 modeloARBOL.reload();
                 Carros.addElement(c.toString());
 
             }
         }
-    
+
     }
-    
+
 }
