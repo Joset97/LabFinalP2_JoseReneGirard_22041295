@@ -13,7 +13,7 @@ public class Malvados extends Jugadores {
     
   private boolean malvado;
 
-    public Malvados(boolean malvado, String nombre, int vida, double atque) {
+    public Malvados(String nombre, int vida, double atque) {
         super(nombre, vida, atque);
         this.malvado = true;
     }

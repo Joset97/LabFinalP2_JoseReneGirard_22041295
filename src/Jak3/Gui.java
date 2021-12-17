@@ -5,6 +5,8 @@
  */
 package Jak3;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author jrgir
@@ -14,37 +16,33 @@ public class Gui extends javax.swing.JFrame implements Runnable {
     /**
      * Creates new form Gui
      */
-    Thread hilo= new Thread(this);
-    int count=0;
+    Thread hilo = new Thread(this);
+    int count = 0;
     boolean pausa = false;
-    boolean vivo= true;
-    
-    
-    
-    
-      @Override
+    boolean vivo = true;
+
+    @Override
     public void run() {
 
-        while(vivo){
+        while (vivo) {
             System.out.println("");
-            while(!pausa){
-            try{
-            
-            pb_vidaErrol.setValue(pb_vidaErrol.getValue()-);
-            
-            
-            
-              }
+            while (!pausa) {
+                try {
+
+                    pb_vidaErrol.setValue(pb_vidaErrol.getValue() -);
+
+                }
             }
-            
+
         }
-        
+
     }
-    
-    
-    
+
     public Gui() {
         initComponents();
+        players.add(new Bueno("Jak", 5000, 5000));
+        players.add(new Malvados("Ciber Errol", 30000, 500));
+
     }
 
     /**
@@ -447,7 +445,9 @@ public class Gui extends javax.swing.JFrame implements Runnable {
     private javax.swing.JProgressBar pb_vidaErrol;
     private javax.swing.JProgressBar pb_vidaJak;
     // End of variables declaration//GEN-END:variables
-    
 
-    
+    AdminVehiculos AP = new AdminVehiculos(".\\Vehiculos\\Carros.car");
+    ArrayList<Jugadores> players = new ArrayList();
+    ArrayList<Vehiculos> cars = new ArrayList();
+
 }
