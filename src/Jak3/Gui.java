@@ -69,7 +69,7 @@ public class Gui extends javax.swing.JFrame implements Runnable {
         players.add(new Bueno("Jak", 5000, 5000));
         players.add(new Malvados("Ciber Errol", 30000, 500));
         if (cars.isEmpty()) {
-            cars.add(new Malvado(500, 123, "TuruMacTuru", 500, 30000));
+
         }
         ActualizarCombos();
         arbol();
@@ -124,8 +124,8 @@ public class Gui extends javax.swing.JFrame implements Runnable {
         LabelvidaJak = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        LaveErrolAtk = new javax.swing.JLabel();
+        LaveErrolVida = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -192,9 +192,9 @@ public class Gui extends javax.swing.JFrame implements Runnable {
 
         jLabel9.setText("Vida Ciber Errol:");
 
-        jLabel10.setText("jLabel10");
+        LaveErrolAtk.setText("jLabel10");
 
-        jLabel11.setText("jLabel11");
+        LaveErrolVida.setText("jLabel11");
 
         jLabel6.setText("jLabel6");
 
@@ -229,8 +229,8 @@ public class Gui extends javax.swing.JFrame implements Runnable {
                             .addComponent(jLabel9))
                         .addGap(36, 36, 36)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel10))
+                            .addComponent(LaveErrolVida)
+                            .addComponent(LaveErrolAtk))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -273,13 +273,13 @@ public class Gui extends javax.swing.JFrame implements Runnable {
                     .addComponent(jLabel4)
                     .addComponent(LabelAtkJak)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel10))
+                    .addComponent(LaveErrolAtk))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(LabelvidaJak)
                     .addComponent(jLabel9)
-                    .addComponent(jLabel11))
+                    .addComponent(LaveErrolVida))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -445,13 +445,20 @@ public class Gui extends javax.swing.JFrame implements Runnable {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        hilo = new Thread(this);
-        pb_vidaErrol.setMaximum(((int) players.get(1).getVida()));
-        pb_vidaJak.setMaximum(((int) players.get(0).getVida()));
-        pb_vidaErrol.setValue(((int) players.get(1).getVida()));
-        pb_vidaJak.setValue(((int) players.get(0).getVida()));
-        hilo.start();
 
+        Vehiculos select = (Vehiculos) ((DefaultMutableTreeNode) Arbol.getLastSelectedPathComponent()).getUserObject();
+        Malvado m = new Malvado(500, 123, "TuruMacTuru", 500, 30000);
+        hilo = new Thread(this);
+        pb_vidaErrol.setMaximum(m.getVida());
+        pb_vidaJak.setMaximum(select.getVida());
+        pb_vidaErrol.setValue(m.getVida());
+        pb_vidaJak.setValue(select.getVida());
+        hilo.start();
+        LabelAtkJak.setText(String.valueOf(select.getAtaque()));
+        LabelvidaJak.setText(String.valueOf(select.getVida()));
+        LaveErrolVida.setText(String.valueOf(m.getVida()));
+        LaveErrolAtk.setText(String.valueOf(m.getAtaque()));
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -554,10 +561,10 @@ public class Gui extends javax.swing.JFrame implements Runnable {
         // TODO add your handling code here:
 //arbol();
     }//GEN-LAST:event_jTabbedPane1StateChanged
-    
+
     /**
-         * @param args the command line arguments
-         */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -596,6 +603,8 @@ public class Gui extends javax.swing.JFrame implements Runnable {
     private javax.swing.JFormattedTextField FormatedtxtVelocidad;
     private javax.swing.JLabel LabelAtkJak;
     private javax.swing.JLabel LabelvidaJak;
+    private javax.swing.JLabel LaveErrolAtk;
+    private javax.swing.JLabel LaveErrolVida;
     private javax.swing.JTextField NombreCar;
     private javax.swing.JSpinner SpinerDerraape;
     private javax.swing.JComboBox<String> TipoCombo;
@@ -606,8 +615,6 @@ public class Gui extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
