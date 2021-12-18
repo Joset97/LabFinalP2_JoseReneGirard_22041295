@@ -63,10 +63,16 @@ public class Gui extends javax.swing.JFrame implements Runnable {
 
     public Gui() {
         initComponents();
+        AP.cargarArchivo();
+        cars = AP.getCar();
+
         players.add(new Bueno("Jak", 5000, 5000));
         players.add(new Malvados("Ciber Errol", 30000, 500));
-        cars.add(new Malvado(500, 123, "TuruMacTuru", 500, 30000));
-        //    arbol();
+        if (cars.isEmpty()) {
+            cars.add(new Malvado(500, 123, "TuruMacTuru", 500, 30000));
+        }
+        ActualizarCombos();
+        arbol();
         /* DefaultTreeModel modeloARBOL
                     = (DefaultTreeModel) Arbol.getModel();
             DefaultMutableTreeNode raiz
@@ -143,6 +149,12 @@ public class Gui extends javax.swing.JFrame implements Runnable {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(153, 255, 153));
+
+        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane1StateChanged(evt);
+            }
+        });
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 204));
 
@@ -296,6 +308,11 @@ public class Gui extends javax.swing.JFrame implements Runnable {
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton3.setText("Eliminar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("crear");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -447,12 +464,19 @@ public class Gui extends javax.swing.JFrame implements Runnable {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
 
-        String nombre = NombreCar.getText();
-        int vida = Integer.parseInt(formatedTxtVida.getText());
-        int atk = Integer.parseInt(FormatedTxtAttack.getText());
-        int derrape = SpinerDerraape.getComponentCount();
-        int velocidad = Integer.parseInt(FormatedtxtVelocidad.getText());
-        String tipo = ((String) (TipoCombo.getSelectedItem()));
+        String nombre;
+        int vida;
+        int atk;
+        int derrape;
+        int velocidad;
+        String tipo;
+
+        nombre = NombreCar.getText();
+        vida = Integer.parseInt(formatedTxtVida.getText());
+        atk = Integer.parseInt(FormatedTxtAttack.getText());
+        derrape = SpinerDerraape.getComponentCount();
+        velocidad = Integer.parseInt(FormatedtxtVelocidad.getText());
+        tipo = ((String) (TipoCombo.getSelectedItem()));
 
         if (tipo.equals("Belicos")) {
 
@@ -483,6 +507,7 @@ public class Gui extends javax.swing.JFrame implements Runnable {
             AP.escribirArchivo();
             AP.cargarArchivo();
             cars = AP.getCar();
+
             JOptionPane.showMessageDialog(this, "Se ha agregado con exito");
 
         }
@@ -495,21 +520,44 @@ public class Gui extends javax.swing.JFrame implements Runnable {
             AP.escribirArchivo();
             AP.cargarArchivo();
             cars = AP.getCar();
+            ActualizarCombos();
             JOptionPane.showMessageDialog(this, "Se ha agregado con exito");
 
         }
 
-        NombreCar.setText(" ");
-        formatedTxtVida.setText(" ");
-        FormatedTxtAttack.setText(" ");
-        FormatedtxtVelocidad.setText(" ");
-
+        NombreCar.setText("");
+        formatedTxtVida.setText("");
+        FormatedTxtAttack.setText("");
+        FormatedtxtVelocidad.setText("");
+        ActualizarCombos();
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        DefaultComboBoxModel modelo
+                = (DefaultComboBoxModel) jComboBox2.getModel();
+
+        for (int i = 0; i < cars.size(); i++) {
+
+            if (cars.get(i).getNombre().equals(modelo.getSelectedItem())) {
+
+                cars.remove(i);
+
+            }
+
+        }
+        ActualizarCombos();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
+        // TODO add your handling code here:
+//arbol();
+    }//GEN-LAST:event_jTabbedPane1StateChanged
+    
     /**
-     * @param args the command line arguments
-     */
+         * @param args the command line arguments
+         */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -607,4 +655,19 @@ public class Gui extends javax.swing.JFrame implements Runnable {
 
     }
 
+    public void ActualizarCombos() {
+
+        DefaultComboBoxModel modelo
+                = (DefaultComboBoxModel) jComboBox2.getModel();
+        modelo.removeAllElements();
+
+        for (Vehiculos a : cars) {
+
+            if (a instanceof Malvado) {
+
+            } else {
+                modelo.addElement((a));
+            }
+        }
+    }
 }

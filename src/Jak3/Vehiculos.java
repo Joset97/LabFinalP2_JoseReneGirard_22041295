@@ -70,5 +70,16 @@ public class Vehiculos implements Serializable  {
     }
 
     
+   /* @Override
+    public String toString() {
+        return  nombre ;
+    }
+
+    */
+
+    @Override
+    public String toString() {
+        return nombre ;
+    }
     
 }

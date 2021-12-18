@@ -47,4 +47,8 @@ public class Salto extends Vehiculos implements Serializable{
         this.salto = salto;
     }
 
+    @Override
+    public String toString() {
+        return super.nombre;
+    }
 }

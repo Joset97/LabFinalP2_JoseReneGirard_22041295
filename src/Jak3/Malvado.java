@@ -49,5 +49,9 @@ public class Malvado extends Vehiculos implements Serializable{
          return valorDado;
     }
     
+    @Override
+    public String toString() {
+        return super.nombre;
+    }
     
 }

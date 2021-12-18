@@ -34,4 +34,8 @@ public class Ataque extends Vehiculos implements Serializable{
         this.attk = attk;
     }
 
+    @Override
+    public String toString() {
+        return super.nombre;
+    }
 }
