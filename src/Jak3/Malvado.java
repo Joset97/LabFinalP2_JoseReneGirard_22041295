@@ -24,7 +24,7 @@ public class Malvado extends Vehiculos implements Serializable{
         super(velocidad, pderrape, nombre, ataque, vida);
         
         super.setAtaque(setAtaqueM());
-       super.setVida( setVidaM());
+       super.setVida(super.vida+ setVidaM());
         
     }
     public int getVidaM() {
