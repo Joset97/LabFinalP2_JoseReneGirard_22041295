@@ -5,18 +5,19 @@
  */
 package Jak3;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
  *
  * @author jrgir
  */
-public class Salto extends Vehiculos {
+public class Salto extends Vehiculos implements Serializable{
 
     Random r = new Random();
     int valorDado = r.nextInt(100);
     int salto;
-
+ private static final long SerialVersionUID = 99770L;
     public Salto(int salto, double velocidad, double pderrape, String nombre, int ataque, int vida) {
         super(velocidad, pderrape, nombre, ataque, vida);
         this.salto = valorDado;

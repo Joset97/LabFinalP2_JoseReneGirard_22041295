@@ -5,17 +5,18 @@
  */
 package Jak3;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
  *
  * @author jrgir
  */
-public class Ataque extends Vehiculos {
+public class Ataque extends Vehiculos implements Serializable{
 
     private double attk;
    private Random r = new Random();
-    
+     private static final long SerialVersionUID = 99770L;
 
     public Ataque(double velocidad, double pderrape, String nombre, double ataque, int vida) {
         super(velocidad, pderrape, nombre, ataque, vida);

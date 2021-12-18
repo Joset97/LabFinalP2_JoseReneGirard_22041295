@@ -5,18 +5,19 @@
  */
 package Jak3;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
  *
  * @author jrgir
  */
-public class Malvado extends Vehiculos{
+public class Malvado extends Vehiculos implements Serializable{
 
    private int vidaM;
    private int AtaqueM;
 
-   
+   private static final long SerialVersionUID = 99770L;
 
     public Malvado(double velocidad, double pderrape, String nombre, double ataque, int vida) {
   

@@ -1,5 +1,7 @@
 package Jak3;
 
+import java.io.Serializable;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,7 +11,7 @@ package Jak3;
  *
  * @author jrgir
  */
-public class Vehiculos {
+public class Vehiculos implements Serializable  {
 
     protected double velocidad;
     protected double pderrape;
@@ -17,6 +19,8 @@ public class Vehiculos {
     protected double ataque;
     protected int vida;
 
+    private static final long SerialVersionUID = 99770L;
+    
     public Vehiculos(double velocidad, double pderrape, String nombre, double ataque, int vida) {
         this.velocidad = velocidad;
         this.pderrape = pderrape;

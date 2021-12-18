@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -64,7 +65,31 @@ public class Gui extends javax.swing.JFrame implements Runnable {
         initComponents();
         players.add(new Bueno("Jak", 5000, 5000));
         players.add(new Malvados("Ciber Errol", 30000, 500));
-        arbol();
+        cars.add(new Malvado(500, 123, "TuruMacTuru", 500, 30000));
+        //    arbol();
+        /* DefaultTreeModel modeloARBOL
+                    = (DefaultTreeModel) Arbol.getModel();
+            DefaultMutableTreeNode raiz
+                    = (DefaultMutableTreeNode) modeloARBOL.getRoot();
+            DefaultComboBoxModel Carros = (DefaultComboBoxModel) jComboBox2.getModel();
+    
+            if (!AP.getCar().isEmpty()) {
+            modeloARBOL
+                    = (DefaultTreeModel) Arbol.getModel();
+            raiz
+                    = (DefaultMutableTreeNode) modeloARBOL.getRoot();
+            Carros = (DefaultComboBoxModel) jComboBox2.getModel();
+
+            for (Vehiculos c : AP.getCar()) {
+                DefaultMutableTreeNode carro = new DefaultMutableTreeNode(c);
+                raiz.add(carro);
+                modeloARBOL.reload();
+                Carros.addElement(c.toString());
+
+            }
+    
+    }*/
+
     }
 
     /**
@@ -104,7 +129,7 @@ public class Gui extends javax.swing.JFrame implements Runnable {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        TipoCombo = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -112,7 +137,7 @@ public class Gui extends javax.swing.JFrame implements Runnable {
         FormatedtxtVelocidad = new javax.swing.JFormattedTextField();
         formatedTxtVida = new javax.swing.JFormattedTextField();
         NombreCar = new javax.swing.JTextField();
-        jSpinner1 = new javax.swing.JSpinner();
+        SpinerDerraape = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -266,15 +291,20 @@ public class Gui extends javax.swing.JFrame implements Runnable {
 
         jLabel17.setText("Derrape");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        TipoCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Belicos", "Salto", "Ataque", "Normal" }));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton3.setText("Eliminar");
 
         jButton4.setText("crear");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
+        SpinerDerraape.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -297,7 +327,7 @@ public class Gui extends javax.swing.JFrame implements Runnable {
                                     .addComponent(jLabel15)
                                     .addComponent(jLabel16)
                                     .addComponent(jLabel17)
-                                    .addComponent(jComboBox1, 0, 175, Short.MAX_VALUE)
+                                    .addComponent(TipoCombo, 0, 175, Short.MAX_VALUE)
                                     .addComponent(formatedTxtVida)))
                             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())
@@ -306,7 +336,7 @@ public class Gui extends javax.swing.JFrame implements Runnable {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(FormatedTxtAttack, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(SpinerDerraape, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)))
@@ -329,7 +359,7 @@ public class Gui extends javax.swing.JFrame implements Runnable {
                     .addComponent(jLabel16))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TipoCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(FormatedtxtVelocidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -342,7 +372,7 @@ public class Gui extends javax.swing.JFrame implements Runnable {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(SpinerDerraape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)))
                 .addComponent(jButton4)
                 .addGap(35, 35, 35)
@@ -414,6 +444,69 @@ public class Gui extends javax.swing.JFrame implements Runnable {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+
+        String nombre = NombreCar.getText();
+        int vida = Integer.parseInt(formatedTxtVida.getText());
+        int atk = Integer.parseInt(FormatedTxtAttack.getText());
+        int derrape = SpinerDerraape.getComponentCount();
+        int velocidad = Integer.parseInt(FormatedtxtVelocidad.getText());
+        String tipo = ((String) (TipoCombo.getSelectedItem()));
+
+        if (tipo.equals("Belicos")) {
+
+            Belicos be = new Belicos(velocidad, derrape, nombre, atk, vida);
+
+            cars.add(be);
+            AP.setCar(cars);
+            AP.escribirArchivo();
+            AP.cargarArchivo();
+            cars = AP.getCar();
+            JOptionPane.showMessageDialog(this, "Se ha agregado con exito");
+        }
+        if (tipo.equals("Salto")) {
+
+            Salto sal = new Salto(40, velocidad, derrape, nombre, atk, vida);
+            cars.add(sal);
+            AP.setCar(cars);
+            AP.escribirArchivo();
+            AP.cargarArchivo();
+            cars = AP.getCar();
+            JOptionPane.showMessageDialog(this, "Se ha agregado con exito");
+        }
+        if (tipo.equals("Ataque")) {
+
+            Ataque atke = new Ataque(velocidad, derrape, nombre, atk, vida);
+            cars.add(atke);
+            AP.setCar(cars);
+            AP.escribirArchivo();
+            AP.cargarArchivo();
+            cars = AP.getCar();
+            JOptionPane.showMessageDialog(this, "Se ha agregado con exito");
+
+        }
+        if (tipo.equals("Normal")) {
+
+            Vehiculos vh = new Vehiculos(velocidad, derrape, nombre, atk, vida);
+
+            cars.add(vh);
+            AP.setCar(cars);
+            AP.escribirArchivo();
+            AP.cargarArchivo();
+            cars = AP.getCar();
+            JOptionPane.showMessageDialog(this, "Se ha agregado con exito");
+
+        }
+
+        NombreCar.setText(" ");
+        formatedTxtVida.setText(" ");
+        FormatedTxtAttack.setText(" ");
+        FormatedtxtVelocidad.setText(" ");
+
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -456,12 +549,13 @@ public class Gui extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel LabelAtkJak;
     private javax.swing.JLabel LabelvidaJak;
     private javax.swing.JTextField NombreCar;
+    private javax.swing.JSpinner SpinerDerraape;
+    private javax.swing.JComboBox<String> TipoCombo;
     private javax.swing.JFormattedTextField formatedTxtVida;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -484,7 +578,6 @@ public class Gui extends javax.swing.JFrame implements Runnable {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JProgressBar pb_vidaErrol;
     private javax.swing.JProgressBar pb_vidaJak;

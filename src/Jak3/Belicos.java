@@ -5,6 +5,7 @@
  */
 package Jak3;
 
+import java.io.Serializable;
 import java.util.Random;
 
 
@@ -12,9 +13,10 @@ import java.util.Random;
  *
  * @author jrgir
  */
-public class Belicos extends Vehiculos{
+public class Belicos extends Vehiculos implements Serializable{
     
     int vidas=0;
+    private static final long SerialVersionUID = 99770L;
 
     public Belicos(double velocidad, double pderrape, String nombre, int ataque, int vida) {
         super(velocidad, pderrape, nombre, ataque, vida);
